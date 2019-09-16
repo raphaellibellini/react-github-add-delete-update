@@ -32,3 +32,26 @@ body {
 .search-button {
   width: 100%;
 }
+
+.repo-icon {
+  width: 105px;
+  height: 105px;
+}
+
+.repo-name {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.repo-subtitle {
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+.repo-info {
+  margin: 0 300px;
+}
+
+.atualizacao {
+  margin: 0 8px 0 450px ;
+}
