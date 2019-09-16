@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Segment, Input, Button } from 'semantic-ui-react';
 
 function Search(props) {
-    const { query, updateQuery, addRepository } = props;
+    const { query, repositories, updateQuery, addRepository } = props;
     
     return (
         <Grid>
@@ -20,7 +20,7 @@ function Search(props) {
                     Repositórios
                 </Grid.Column>
                 <Grid.Column width={1} textAlign='right' className='search-header'>
-                    4
+                    {repositories.length}
                 </Grid.Column>
             </Grid.Row>
 

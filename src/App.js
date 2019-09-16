@@ -46,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <Search query={this.state.query} updateQuery={this.updateQuery} addRepository={this.addRepository} />
+        <Search query={this.state.query} repositories={this.state.repositories} updateQuery={this.updateQuery} addRepository={this.addRepository} />
         <List repositories={this.state.repositories} />
       </div>
     )
