@@ -10,7 +10,8 @@ body {
 }
 
 .error {
-  font-size: 18px !important; 
+  font-size: 18px !important;
+  display: none; 
 }
 
 .logo-git {
