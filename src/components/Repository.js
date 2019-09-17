@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
 const Repository = (props) => {
-    const { repo } = props;
+    const { repo, removeRepository } = props;
 
     return (
         <li>
@@ -54,8 +54,8 @@ const Repository = (props) => {
 
                 <Grid.Row>
                     <Grid.Column width={16}>
-                        <img src="https://img.icons8.com/flat_round/32/000000/update-left-rotation.png" className='atualizacao'></img>
-                        <img src="https://img.icons8.com/offices/32/000000/delete.png" alt='Lixeira'></img>
+                        <button className='refresh'>Atualizar</button>
+                        <button className='delete' onClick={() => removeRepository(repo)} >Excluir</button>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
