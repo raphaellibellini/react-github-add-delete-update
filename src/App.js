@@ -15,6 +15,7 @@ class App extends Component {
       this.setState ({ query });
   }
 
+  // NÃO ADD REPOSITORIO IGUAL
   addRepository = async() => {
       try{
           const error = document.querySelector('.error');
@@ -23,9 +24,22 @@ class App extends Component {
           console.log(this.state.query);
           const resp = await api.get(`/repos/${this.state.query}`);
           console.log(resp);
+
           const { id, owner: { avatar_url, login }, name, stargazers_count, language, forks } = resp.data;
 
-          // Concatena o array antigo com o novo objeto
+          this.setState((currentState) => ({
+              repositories: currentState.repositories.concat([{
+                id,
+                avatar_url,
+                login,
+                name,
+                stargazers_count,
+                language,
+                forks
+              }])
+          }))
+          
+          /*
           this.setState({
             repositories: [...this.state.repositories, {
               id,
@@ -37,7 +51,10 @@ class App extends Component {
               forks
             }]
           });
+          */
+
           console.log(this.state.repositories);
+          
       } catch {
           const error = document.querySelector('.error');
           error.style.display = 'block';
@@ -45,19 +62,36 @@ class App extends Component {
   }
 
   removeRepository = (repository) => {
-        console.log(repository.id);
-        this.setState((currentState) => ({
+      console.log(repository.id);
+      this.setState((currentState) => ({
           repositories: currentState.repositories.filter((r) => {
             return r.id !== repository.id;
           })
-        }))
+      }))
+  }
+
+  updateRepository = async(repo) => {
+      const resp = await api.get(`/repos/${repo.login}/${repo.name}`);
+      console.log(resp);
+      console.log('OLD REPOS', this.state.repositories);
+
+      const { id, owner: { avatar_url, login }, name, stargazers_count, language, forks } = resp.data;
+      repo = { id, owner: { avatar_url, login }, name, stargazers_count, language, forks };
+
+      let newRepositories = this.state.repositories.map(r => (
+          r.id === repo.id ? repo : r
+      ))
+
+      this.setState({ repositories: newRepositories })
+
+      console.log('NEW REPO', this.state.repositories);
   }
 
   render() {
     return (
       <div className='App'>
         <Search query={this.state.query} repositories={this.state.repositories} updateQuery={this.updateQuery} addRepository={this.addRepository} />
-        <List repositories={this.state.repositories} removeRepository={this.removeRepository} />
+        <List repositories={this.state.repositories} removeRepository={this.removeRepository} updateRepository={this.updateRepository} />
       </div>
     )
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
 const Repository = (props) => {
-    const { repo, removeRepository } = props;
+    const { repo, removeRepository, updateRepository } = props;
 
     return (
         <li>
@@ -54,7 +54,7 @@ const Repository = (props) => {
 
                 <Grid.Row>
                     <Grid.Column width={16}>
-                        <button className='refresh'>Atualizar</button>
+                        <button className='refresh' onClick={() => updateRepository(repo)} >Atualizar</button>
                         <button className='delete' onClick={() => removeRepository(repo)} >Excluir</button>
                     </Grid.Column>
                 </Grid.Row>

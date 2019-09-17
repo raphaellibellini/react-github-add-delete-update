@@ -2,13 +2,12 @@ import React from 'react';
 import Repository from '../components/Repository'
 
 const List = (props) => {
-    const { repositories, removeRepository } = props
-    console.log('LIST', repositories);
+    const { repositories, removeRepository, updateRepository } = props
 
     return (
         <ul>
             {repositories.map((repo, index) => (
-                <Repository key={index} repo={repo} removeRepository={removeRepository} />
+                <Repository key={index} repo={repo} removeRepository={removeRepository} updateRepository={updateRepository} />
             ))}
         </ul>
     )
