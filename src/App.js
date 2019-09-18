@@ -26,11 +26,11 @@ class App extends Component {
 
           const { id, owner: { avatar_url, login }, name, stargazers_count, language, forks } = resp.data;
           let repo = { id, owner: { avatar_url, login }, name, stargazers_count, language, forks };
-          
+          /*
           let found = this.state.repositories.find(r => r.id === repo.id);
           if(found !== undefined) {
             return;
-          } 
+          } */
 
           this.setState((currentState) => ({
               repositories: currentState.repositories.concat({

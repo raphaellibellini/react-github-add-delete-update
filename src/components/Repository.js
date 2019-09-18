@@ -6,7 +6,7 @@ const Repository = (props) => {
 
     return (
         <li>
-            <Grid>
+            <Grid className='repo-component'>
                 <Grid.Row>
                     <Grid.Column textAlign='center'>
                         <img src={repo.avatar_url} className='repo-icon' alt='Logo do repositório'></img>
@@ -53,9 +53,9 @@ const Repository = (props) => {
                 </Grid.Row>
 
                 <Grid.Row>
-                    <Grid.Column width={16}>
-                        <button className='refresh' onClick={() => updateRepository(repo)} >Atualizar</button>
-                        <button className='delete' onClick={() => removeRepository(repo)} >Excluir</button>
+                    <Grid.Column width={16} textAlign='right'>
+                        <button onClick={() => updateRepository(repo)} >Atualizar</button>
+                        <button onClick={() => removeRepository(repo)} >Excluir</button>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

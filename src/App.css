@@ -7,6 +7,8 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #8245BF;
+  width: 100%;
 }
 
 .error {
@@ -17,6 +19,16 @@ body {
 .logo-git {
   width: 52px;
   height: 52px;
+}
+
+.search-component {
+  width: 499px;
+  height: 235px;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 40px auto !important;
+  padding: 0 20px 0 20px !important;
 }
 
 .search-header {
@@ -33,9 +45,30 @@ body {
   width: 100%;
 }
 
+.repo-component {
+  width: 398px;
+  height: 542px;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px !important;
+}
+
+.repo-list {
+  display: flex;
+  list-style-type: none; 
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.repo-info {
+  margin: 0 50px;
+}
+
 .repo-icon {
   width: 105px;
   height: 105px;
+  margin-top: 40px;
 }
 
 .repo-name {
@@ -45,13 +78,5 @@ body {
 
 .repo-subtitle {
   font-size: 18px;
-  padding-bottom: 20px;
 }
 
-.repo-info {
-  margin: 0 550px;
-}
-
-.refresh {
-  margin: 0 8px 0 750px ;
-}

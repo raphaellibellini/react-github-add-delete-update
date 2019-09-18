@@ -5,21 +5,21 @@ function Search(props) {
     const { query, repositories, updateQuery, addRepository } = props;
     
     return (
-        <Grid>
+        <Grid className='search-component'>
             <Grid.Row columns={1}>
                 <Grid.Column>
-                    <Segment inverted color='yellow' textAlign='center' className='error'>Mensagem de erro</Segment>
+                    <Segment inverted color='yellow' textAlign='center' className='error'>Não foi possível localizar o repositório solicitado.</Segment>
                 </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row columns={3} verticalAlign='middle'>
+            <Grid.Row columns={3} verticalAlign='middle' className='search-header'>
                 <Grid.Column width={2}>
                     <img alt='Logo do Github' src="https://img.icons8.com/ios-glyphs/60/000000/github.png"></img>
                 </Grid.Column>
-                <Grid.Column width={13} className='search-header'>
+                <Grid.Column width={12}>
                     Repositórios
                 </Grid.Column>
-                <Grid.Column width={1} textAlign='right' className='search-header'>
+                <Grid.Column width={1} textAlign='right'>
                     {repositories.length}
                 </Grid.Column>
             </Grid.Row>
