@@ -15,7 +15,6 @@ class App extends Component {
       this.setState ({ query });
   }
 
-  // NÃO ADD REPOSITORIO IGUAL
   addRepository = async() => {
       try{
           const error = document.querySelector('.error');
@@ -26,9 +25,15 @@ class App extends Component {
           console.log(resp);
 
           const { id, owner: { avatar_url, login }, name, stargazers_count, language, forks } = resp.data;
+          let repo = { id, owner: { avatar_url, login }, name, stargazers_count, language, forks };
+          
+          let found = this.state.repositories.find(r => r.id === repo.id);
+          if(found !== undefined) {
+            return;
+          } 
 
           this.setState((currentState) => ({
-              repositories: currentState.repositories.concat([{
+              repositories: currentState.repositories.concat({
                 id,
                 avatar_url,
                 login,
@@ -36,7 +41,7 @@ class App extends Component {
                 stargazers_count,
                 language,
                 forks
-              }])
+              })
           }))
           
           /*
@@ -53,8 +58,7 @@ class App extends Component {
           });
           */
 
-          console.log(this.state.repositories);
-          
+          console.log(this.state.repositories); 
       } catch {
           const error = document.querySelector('.error');
           error.style.display = 'block';
@@ -72,8 +76,6 @@ class App extends Component {
 
   updateRepository = async(repo) => {
       const resp = await api.get(`/repos/${repo.login}/${repo.name}`);
-      console.log(resp);
-      console.log('OLD REPOS', this.state.repositories);
 
       const { id, owner: { avatar_url, login }, name, stargazers_count, language, forks } = resp.data;
       repo = { id, owner: { avatar_url, login }, name, stargazers_count, language, forks };
@@ -83,8 +85,6 @@ class App extends Component {
       ))
 
       this.setState({ repositories: newRepositories })
-
-      console.log('NEW REPO', this.state.repositories);
   }
 
   render() {
