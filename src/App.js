@@ -20,17 +20,15 @@ class App extends Component {
           const error = document.querySelector('.error');
           error.style.display = 'none';
 
-          console.log(this.state.query);
           const resp = await api.get(`/repos/${this.state.query}`);
-          console.log(resp);
 
           const { id, owner: { avatar_url, login }, name, stargazers_count, language, forks } = resp.data;
           let repo = { id, owner: { avatar_url, login }, name, stargazers_count, language, forks };
-          /*
+          
           let found = this.state.repositories.find(r => r.id === repo.id);
           if(found !== undefined) {
             return;
-          } */
+          } 
 
           this.setState((currentState) => ({
               repositories: currentState.repositories.concat({
@@ -57,8 +55,6 @@ class App extends Component {
             }]
           });
           */
-
-          console.log(this.state.repositories); 
       } catch {
           const error = document.querySelector('.error');
           error.style.display = 'block';
@@ -66,7 +62,6 @@ class App extends Component {
   }
 
   removeRepository = (repository) => {
-      console.log(repository.id);
       this.setState((currentState) => ({
           repositories: currentState.repositories.filter((r) => {
             return r.id !== repository.id;
@@ -77,8 +72,13 @@ class App extends Component {
   updateRepository = async(repo) => {
       const resp = await api.get(`/repos/${repo.login}/${repo.name}`);
 
-      const { id, owner: { avatar_url, login }, name, stargazers_count, language, forks } = resp.data;
-      repo = { id, owner: { avatar_url, login }, name, stargazers_count, language, forks };
+      console.log('OLD', repo);
+      console.log(repo.login);
+
+      const { id, owner: { avatar_url, login }, name, stargazers_count, language, forks, fullName } = resp.data;
+      repo = { id, avatar_url, login, name, stargazers_count, language, forks, fullName };
+
+      console.log('NEW', repo);
 
       let newRepositories = this.state.repositories.map(r => (
           r.id === repo.id ? repo : r

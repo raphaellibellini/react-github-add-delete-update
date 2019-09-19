@@ -1,5 +1,7 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSyncAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Repository = (props) => {
     const { repo, removeRepository, updateRepository } = props;
@@ -52,10 +54,10 @@ const Repository = (props) => {
                     </Grid.Column>
                 </Grid.Row>
 
-                <Grid.Row>
+                <Grid.Row className='repo-icons'>
                     <Grid.Column width={16} textAlign='right'>
-                        <button onClick={() => updateRepository(repo)} >Atualizar</button>
-                        <button onClick={() => removeRepository(repo)} >Excluir</button>
+                        <FontAwesomeIcon icon={faSyncAlt} size='2x' color='green' onClick={() => updateRepository(repo)} className='icon' />
+                        <FontAwesomeIcon icon={faTrashAlt} size='2x' onClick={() => removeRepository(repo)} />
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
